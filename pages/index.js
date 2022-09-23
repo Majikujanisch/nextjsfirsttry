@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import style from '../styles/Login.module.css'
 import React, { useCallback } from 'react';
+import { useState } from "react";
 import Dropdown from '../component/Dropdown';
 const items = [
   {
@@ -21,7 +22,9 @@ const items = [
   },
 ];
 export default function Login() {
-  const handleStateChange = useCallback((state) => console.log(state), []);
+  const [selectedRoom, setSelectedRoom] = useState(0);
+  const handleStateChange = useCallback((Dropdown) => setSelectedRoom(Dropdown.chosen) ,[]);
+  
   return (
     <div className="container">
       <Head>
@@ -36,11 +39,13 @@ export default function Login() {
               <Dropdown
                 items={ items }
                 id="month-switcher"
-                onStateChange={ handleStateChange }
-                defaultSelectedItem={items[0]} />
+                onStateChange={ (chosen) => setSelectedRoom(chosen.value) }
+                defaultSelectedItem={items[0]} 
+                />
           </div>
         </div>
         <div className={style.main}>
+          <p>{selectedRoom}</p>
           <p>inputCode</p>
         </div>
         <div className={style.main}>
