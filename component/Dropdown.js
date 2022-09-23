@@ -7,14 +7,14 @@ import DropdownItem from './DropdownItem.js';
 import styles from '../styles/Dropdown.module.css';
 
 const itemToString = (item) => item?.value ?? '';
-const placeholderLabel = 'Choose your option';
+const chosen = 'chosen';
 
 const Dropdown = ({
     id,
     items,
     className,
     onStateChange,
-    placeholderLabel,
+    chosen,
     defaultSelectedItem,
     ...rest
 }) => {
@@ -26,26 +26,28 @@ const Dropdown = ({
         getItemProps,
         getToggleButtonProps,
     } = useSelect({ id, itemToString, items, onStateChange, defaultSelectedItem });
-
+    
     const renderDropdownItems = useCallback(() => items.map((item, index) => (
         <DropdownItem
             item={ item }
             key={ `dropdown-item-${index}` }
             selected={ selectedItem === item }
             highlighted={ highlightedIndex === index }
+            chosen = {selectedItem.value}
             { ...getItemProps({ item, index }) } />
     )), [highlightedIndex, getItemProps, selectedItem, items]);
 
     return (
         <div { ...rest } className={ classNames(styles.container, className) }>
-            <button
+            <button 
                 className={ classNames(styles.trigger, { [styles.isOpen]: isOpen }) }
-                { ...getToggleButtonProps() }>
-                { selectedItem?.label ?? placeholderLabel }
+                { ...getToggleButtonProps() }
+                >
+                { selectedItem?.label ?? chosen }
             </button>
-            <ul className={ styles.menu } { ...getMenuProps() }>
+            <button className={ styles.menu } { ...getMenuProps() }>
                 { isOpen && renderDropdownItems() }
-            </ul>
+            </button>
         </div>
     );
 };
@@ -56,7 +58,7 @@ Dropdown.propTypes = {
     id: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     defaultSelectedItem: PropTypes.any,
-    placeholderLabel: PropTypes.string,
+    chosen: PropTypes.any,
 };
 
 export default Dropdown;

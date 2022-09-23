@@ -20,9 +20,9 @@ const DropdownItem = forwardRef(({
     className);
 
     return (
-        <li { ...rest } ref={ ref } className={ itemClasses }>
+        <button { ...rest } ref={ ref } className={ itemClasses }>
             { item.label }
-        </li>
+        </button>
     );
 })
 
