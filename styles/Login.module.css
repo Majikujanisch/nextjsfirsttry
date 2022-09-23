@@ -4,3 +4,11 @@
 .footer {
     background-color: bisque;
 }
+.nav{
+    background-color: blue;
+    
+}
+.dropdown{
+    position: relative;
+    left: 100px;
+}
