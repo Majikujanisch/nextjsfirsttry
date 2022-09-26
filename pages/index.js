@@ -38,7 +38,7 @@ export default function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={style.main}>
         <div className={style.Dropdown}>
           <div className={style.Dropdown}>
             <h2>Raumauswahl </h2>
@@ -51,11 +51,6 @@ export default function Login() {
           </div>
         </div>
         <div className={style.main}>
-          <p>{selectedRoom}</p>
-          
-        </div>
-        <div className={style.main}>
-          <p>inputUserRoom</p>
           <Numberpad></Numberpad>
         </div>
       </main>
