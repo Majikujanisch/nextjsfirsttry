@@ -1,8 +1,12 @@
 import Head from 'next/head'
-import style from '../styles/Login.module.css'
 import React, { useCallback } from 'react';
 import { useState } from "react";
-import Dropdown from '../component/Dropdown';
+
+import Dropdown from '../component/Dropdown'
+import Numberpad from '../component/Numberpad';
+
+import style from '../styles/Login.module.css'
+
 const items = [
   {
     label:"RAUM AUSWAHL",
@@ -22,9 +26,11 @@ const items = [
   },
 ];
 export default function Login() {
+  //state for room to handle
   const [selectedRoom, setSelectedRoom] = useState(0);
-  const handleStateChange = useCallback((Dropdown) => setSelectedRoom(Dropdown.chosen) ,[]);
-  
+  const handleStateChange = useCallback((onSelectedItemChange) => setSelectedRoom(onSelectedItemChange.selectedItem.value) ,[]);
+  //(onSelectedItemChange) => setSelectedRoom(onSelectedItemChange.selectedItem.value)
+  //(onSelectedItemChange) => console.log(onSelectedItemChange.selectedItem.value)
   return (
     <div className="container">
       <Head>
@@ -38,18 +44,19 @@ export default function Login() {
             <h2>Raumauswahl </h2>
               <Dropdown
                 items={ items }
-                id="month-switcher"
-                onStateChange={ (chosen) => setSelectedRoom(chosen.value) }
+                id="room-switch"
+                onSelectedItemChange={ handleStateChange }
                 defaultSelectedItem={items[0]} 
                 />
           </div>
         </div>
         <div className={style.main}>
           <p>{selectedRoom}</p>
-          <p>inputCode</p>
+          
         </div>
         <div className={style.main}>
           <p>inputUserRoom</p>
+          <Numberpad></Numberpad>
         </div>
       </main>
 

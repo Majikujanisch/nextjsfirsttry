@@ -13,9 +13,9 @@ const Dropdown = ({
     id,
     items,
     className,
-    onStateChange,
     chosen,
     defaultSelectedItem,
+    onSelectedItemChange,
     ...rest
 }) => {
     const {
@@ -25,7 +25,7 @@ const Dropdown = ({
         getMenuProps,
         getItemProps,
         getToggleButtonProps,
-    } = useSelect({ id, itemToString, items, onStateChange, defaultSelectedItem });
+    } = useSelect({ id, itemToString, items, onSelectedItemChange, defaultSelectedItem });
     
     const renderDropdownItems = useCallback(() => items.map((item, index) => (
         <DropdownItem
@@ -45,16 +45,16 @@ const Dropdown = ({
                 >
                 { selectedItem?.label ?? chosen }
             </button>
-            <button className={ styles.menu } { ...getMenuProps() }>
+            <ol className={ styles.menu } { ...getMenuProps() }>
                 { isOpen && renderDropdownItems() }
-            </button>
+            </ol>
         </div>
     );
 };
 
 Dropdown.propTypes = {
     className: PropTypes.string,
-    onStateChange: PropTypes.func,
+    onSelectedItemChange: PropTypes.func,
     id: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
     defaultSelectedItem: PropTypes.any,
