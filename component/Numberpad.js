@@ -2,7 +2,7 @@ import styles from '../styles/Numberpad.module.css'
 import { useCallback, useState } from "react";
 
 function numberpad() {
-    const [outputstring, setOutputstring] = useState("");
+    const [outputstring, setOutputstring] = useState(" ");
     function handleclicks(inputvalue){
         if (inputvalue == 10){
             setOutputstring(outputstring.slice(0,-1))
@@ -14,7 +14,7 @@ function numberpad() {
     //const handleclicks = useCallback(() => setOutputstring(outputstring + inputvalue), []);
     //const [inputvalue, setInputValue] = useState(0)
     return (<div>
-        <div className="outputfield">{outputstring}</div>
+        <div className="outputfield"><p>{outputstring}</p> </div>
         <div className={styles.inputfield}>
             <button className={styles.normbut} onClick={()=>handleclicks(7)}>7</button>
             <button className={styles.normbut} onClick={()=>handleclicks(8)}>8</button>

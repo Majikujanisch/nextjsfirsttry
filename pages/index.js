@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Dropdown from '../component/Dropdown'
 import Numberpad from '../component/Numberpad';
+import APIButton from '../component/APILoginButton';
 
 import style from '../styles/Login.module.css'
 
@@ -52,6 +53,7 @@ export default function Login() {
         </div>
         <div className={style.main}>
           <Numberpad></Numberpad>
+          <APIButton></APIButton>
         </div>
       </main>
 

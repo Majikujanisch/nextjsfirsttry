@@ -1,0 +1,52 @@
+export default function API() {
+	const callAPIhelp = async () => {
+		try {
+			const res = await fetch(
+				`http://127.0.0.1:8087/help`
+			);
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+  const callAPIgetplainvalue = async () => {
+		try {
+			const res = await fetch(
+				`http://127.0.0.1:8087/getPlainValue/0_userdata.0.Raum_2_Lampe`
+			);
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+  const callAPIsetValue = async () => {
+    
+		try {
+			const res = await fetch(
+				`http://127.0.0.1:8087/set/0_userdata.0.Raum_2_Lampe?value=false&prettyPrint`
+			);
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+	
+    const callAPILoginPin = async () => {
+        try{
+            const res = await fetch('');
+            const data = await res.json();
+            console.log(data);
+            console.log("APILOGIN")
+        } catch (err){
+            console.log(err);
+            console.log("APILOGIN")
+        }
+    
+    };
+
+}
+
+
