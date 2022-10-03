@@ -85,7 +85,7 @@ export default function Login() {
   //(onSelectedItemChange) => console.log(onSelectedItemChange.selectedItem.value)
   return (
     <div className="container">
-      <Head>
+      <Head children={undefined}>
         <title>Log into User</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -99,11 +99,10 @@ export default function Login() {
           <div className={style.Dropdown}>
             <h2>Raumauswahl </h2>
               <Dropdown
-                items={ items }
-                id="room-switch"
-                onSelectedItemChange={ handleStateChange }
-                defaultSelectedItem={items[0]} 
-                />
+              items={items}
+              id="room-switch"
+              onSelectedItemChange={handleStateChange}
+              defaultSelectedItem={items[0]} className={undefined} chosen={undefined}                />
           </div>
         </div>
       </main>

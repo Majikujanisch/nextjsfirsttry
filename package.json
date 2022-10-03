@@ -1,13 +1,61 @@
 {
   
     "private": true,
+  
     "scripts": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start"
+  
+      
+    "dev": "next dev",
+  
+      
+    "build": "next build",
+  
+      
+    "start": "next start"
+  
     },
-  "dependencies": {
+  
+    "dependencies": {
+  
+      
     "@ory/client": "^0.2.0-alpha.48",
-    "@ory/integrations": "^0.2.8"
-  }
+  
+      
+    "@ory/integration-react": "^0.0.1",
+  
+      
+    "@ory/integrations": "^0.2.8",
+  
+      
+    "@ory/kratos-client": "^0.0.0-next.a36dda23f209",
+  
+      
+    "@ory/kratos-selfservice-ui-node": "^0.0.16",
+  
+      
+    "@ory/themes": "^0.0.101",
+  
+      
+    "classnames": "^2.3.2",
+  
+      
+    "downshift": "^6.1.12",
+  
+      
+    "react": "^18.2.0",
+  
+      
+    "react-dom": "^18.2.0",
+  
+      
+    "react-toastify": "^9.0.8"
+  
+    },
+  
+    "devDependencies": {
+  
+      
+    "typescript": "4.8.4"
+  
+    }
 }
