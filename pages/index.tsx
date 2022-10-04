@@ -7,7 +7,7 @@ import Dropdown from '../component/Dropdown'
 import Numberpad from '../component/Numberpad';
 import APIButton from '../component/APILoginButton';
 
-import style from '../styles/Login.module.css'
+import style from "../styles/Login.module.css"
 
 const items = [
   {
@@ -85,7 +85,7 @@ export default function Login() {
   //(onSelectedItemChange) => console.log(onSelectedItemChange.selectedItem.value)
   return (
     <div className="container">
-      <Head children={undefined}>
+      <Head>
         <title>Log into User</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
