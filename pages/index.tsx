@@ -42,10 +42,15 @@ export default function Login() {
   //Session Handling
   const router = useRouter()
   const [session, setSession] = useState<Session | undefined>()
+  // The error message or undefined.
+  const [error, setError] = useState<any>()
   //state for room to handle
   const [selectedRoom, setSelectedRoom] = useState(0);
   const handleStateChange = useCallback((onSelectedItemChange) => setSelectedRoom(onSelectedItemChange.selectedItem.value) ,[]);
   useEffect(() => {
+    if (session || error) {
+      return
+    }
     ory
       .toSession()
       .then(({ data }) => {
@@ -54,7 +59,7 @@ export default function Login() {
       })
       .catch(() => {
         // Redirect to login page
-        return router.push(edgeConfig.basePath + "/ui/login")
+        return router.push("/Login")
       })
   })
 

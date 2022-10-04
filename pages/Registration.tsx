@@ -2,7 +2,6 @@ import {
     SelfServiceRegistrationFlow,
     SubmitSelfServiceRegistrationFlowBody,
   } from "@ory/client"
-  import { CardTitle } from "@ory/themes"
   import { AxiosError } from "axios"
   import type { NextPage } from "next"
   import Head from "next/head"
@@ -10,11 +9,10 @@ import {
   import { useEffect, useState } from "react"
   
   // Import render helpers
-  import { Flow } from "../pkg/ui/Flow"
-  import { ActionCard, CenterLink, MarginCard  } from "../pkg/styled"
+  import { Flow, ActionCard, CenterLink, MarginCard } from "../pkg"
   import { handleFlowError } from "../pkg/errors"
   // Import the SDK
-  import {ory} from "../pkg/sdk"
+  import ory from "../pkg/sdk"
   
   // Renders the registration page
   const Registration: NextPage = () => {
@@ -89,12 +87,12 @@ import {
   
     return (
       <>
-        <Head children={undefined}>
+        <Head>
           <title>Create account - Ory NextJS Integration Example</title>
           <meta name="description" content="NextJS + React + Vercel + Ory" />
         </Head>
         <MarginCard>
-          <CardTitle>Create account</CardTitle>
+          <p>Create account</p>
           <Flow onSubmit={onSubmit} flow={flow} />
         </MarginCard>
         <ActionCard>
