@@ -1,0 +1,70 @@
+serve:
+  proxy:
+    port: 4450 # run the proxy at port 4450
+    cors:
+      enabled: true
+    
+  api:
+    port: 4456 # run the api at port 4456
+  prometheus:
+    port: 9090
+    host: localhost
+    metrics_path: /metrics
+  
+
+
+access_rules:
+  matching_strategy: regexp
+  repositories:
+    - file:///C:/Users/c102371/Documents/Blog/nextjsfirsttry/nextjsfirsttry/oathkeeper/rules.yaml
+
+errors:
+  fallback:
+    - json
+  handlers:
+    json:
+      enabled: true
+      config:
+        verbose: true
+    redirect:
+      enabled: true
+      config:
+        to: https://www.ory.sh/docs
+
+mutators:
+  header:
+    enabled: true
+    config:
+      headers:
+        X-User: "{{ print .Subject }}"
+        # You could add some other headers, for example with data from the
+        # session.
+        # X-Some-Arbitrary-Data: "{{ print .Extra.some.arbitrary.data }}"
+  noop:
+    enabled: true
+  id_token:
+    enabled: true
+    config:
+      issuer_url: http://localhost:4450/
+      jwks_url: file:///jwks.json
+
+authorizers:
+  allow:
+    enabled: true
+
+authenticators:
+  bearer_token:
+    enabled: true
+    config:
+      check_session_url: https://session-store-host
+      token_from:
+        header: ory_pat_AzRrrvr93n07gTwFDDbNs9biAnrW3JYz
+  noop:
+    # Set enabled to true if the authenticator should be enabled and false to disable the authenticator. Defaults to false.
+    enabled: true
+
+  anonymous:
+    enabled: true
+    config:
+      subject: guest
+

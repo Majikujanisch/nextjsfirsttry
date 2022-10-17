@@ -13,3 +13,11 @@
     position: relative;
     left: 100px;
 }
+.adminbutton{
+    background-color: rgb(119, 119, 49);
+    max-width: 50%;
+    position: relative;
+    right: 0px;
+    left:250px;
+
+}

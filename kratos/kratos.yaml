@@ -1,0 +1,85 @@
+version: v0.10.1
+
+dsn: mysql://root:root@tcp(localhost:3306)/User?parseTime=true
+
+serve:
+  public:
+    base_url: http://127.0.0.1:4433/
+    cors:
+      enabled: true
+  admin:
+    base_url: http://127.0.0.1:4434/
+    
+
+selfservice:
+  default_browser_return_url: http://localhost:3000/
+  allowed_return_urls:
+    - http://localhost:3000/
+
+  methods:
+    password:
+      enabled: true
+
+  flows:
+    error:
+      ui_url: http://127.0.0.1:4455/error
+
+    settings:
+      ui_url: http://127.0.0.1:4455/settings
+      privileged_session_max_age: 15m
+
+    recovery:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/recovery
+
+    verification:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/verification
+      after:
+        default_browser_return_url: http://127.0.0.1:4455/
+
+    logout:
+      after:
+        default_browser_return_url: http://localhost:3000/Login
+
+    login:
+      ui_url: http://localhost:3000/Login
+      lifespan: 10m
+
+    registration:
+      lifespan: 10m
+      ui_url: http://localhost:3000/Registration
+      after:
+        password:
+          hooks:
+            -
+              hook: session
+
+log:
+  level: debug
+  format: text
+  leak_sensitive_values: true
+
+secrets:
+  cookie:
+    - PLEASE-CHANGE-ME-I-AM-VERY-INSECURE
+  cipher:
+    - 32-LONG-SECRET-NOT-SECURE-AT-ALL
+
+ciphers:
+  algorithm: xchacha20-poly1305
+
+hashers:
+  algorithm: bcrypt
+  bcrypt:
+    cost: 8
+
+identity:
+  default_schema_id: default
+  schemas:
+    - id: Benutzer
+      url: https://jolly-williams-wvwhe1vn9o.projects.oryapis.com/schemas/NDA5ODhlYTkxZTZhZjY2NmQzNmUzMTFlYmI4YmMxOGY2NDFlZjg2NjlmZmRiOGU1YzRiMjQ2ODJlNjQyNTg5YjFiNDFiMTU2NTRhYTVmMTk3NTg1NzBhZTJhODcyOWZhODVlOThmNGY2YWI0MmE4ZWRhMDg4NDI0Yzk2YWRjY2Q
+
+courier:
+  smtp:
+    connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true

@@ -1,0 +1,50 @@
+- id: RuleOne
+  version: v0.40.0
+  upstream: 
+    url: http://127.0.0.1:4434/admin/identities/ecc393ba-d46f-4fea-b1c6-6edb4
+    preserve_host: false
+    
+  match:
+    url: http://127.0.0.1:4450/admin/identities/ecc393ba-d46f-4fea-b1c6-6edbdad60734
+    methods:
+      - GET
+      - DELETE
+  authenticators:
+    - handler: anonymous
+    - handler: noop
+    - handler: bearer_token
+      config: 
+        token_from: 
+          header: ory_pat_AzRrrvr93n07gTwFDDbNs9biAnrW3JYz
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+  errors:
+    - handler: json
+    - handler: json
+
+- id: Rule
+  version: v0.40.0
+  upstream: 
+    url: https://jolly-williams-wvwhe1vn9o.projects.oryapis.com/admin/identities/<.*>
+    strip_path: admin/identities/<.*>
+  match:
+    url: http://localhost:4450/admin/identities/<.*>
+    methods:
+      - GET
+      - DELETE
+  authenticators:
+    - handler: anonymous
+    - handler: noop
+    - handler: bearer_token
+      config: 
+        token_from: 
+          header: ory_pat_AzRrrvr93n07gTwFDDbNs9biAnrW3JYz
+  authorizer:
+    handler: allow
+  mutators:
+    - handler: noop
+  errors:
+    - handler: json
+    - handler: json

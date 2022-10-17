@@ -59,7 +59,7 @@ import {
       router
         // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
         // his data when she/he reloads the page.
-        .push(`/registration?flow=${flow?.id}`, undefined, { shallow: true })
+        .push(`/Registration?flow=${flow?.id}`, undefined, {shallow:true} )
         .then(() =>
           ory
             .submitSelfServiceRegistrationFlow(String(flow?.id), values)
@@ -70,7 +70,7 @@ import {
               console.log("This is the user session: ", data, data.identity)
   
               // For now however we just want to redirect home!
-              return router.push(flow?.return_to || "/").then(() => {})
+              return router.push(flow?.return_to || '/').then(() => {})
             })
             .catch(handleFlowError(router, "registration", setFlow))
             .catch((err: AxiosError) => {
@@ -78,9 +78,10 @@ import {
               if (err.response?.status === 400) {
                 // Yup, it is!
                 setFlow(err.response?.data)
-                return
+                console.log("error 400")
+                return 
               }
-  
+              console.log("error 404")
               return Promise.reject(err)
             }),
         )
@@ -96,7 +97,7 @@ import {
           <Flow onSubmit={onSubmit} flow={flow} />
         </MarginCard>
         <ActionCard>
-          <CenterLink data-testid="cta-link" href="/login">
+          <CenterLink data-testid="cta-link" href="/Login">
             Sign in
           </CenterLink>
         </ActionCard>
