@@ -1,5 +1,20 @@
-export default function API() {
-	const callAPIhelp = async () => {
+export default async function handler(req, res) {
+	
+	if (req.method === 'POST'){
+
+	}
+	else if(req.method ==='GET'){
+		try {
+			const res = await fetch(
+				`http://127.0.0.1:8087/getPlainValue/0_userdata.0.Raum_2_Lampe`
+			);
+			const data = await res.json();
+			console.log(data);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+   const callAPIhelp = async () => {
 		try {
 			const res = await fetch(
 				`http://127.0.0.1:8087/help`

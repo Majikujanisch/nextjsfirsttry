@@ -27,13 +27,14 @@
 - id: Rule
   version: v0.40.0
   upstream: 
-    url: https://jolly-williams-wvwhe1vn9o.projects.oryapis.com/admin/identities/<.*>
+    url: http://127.0.0.1:4434/admin/identities/<.*>
     strip_path: admin/identities/<.*>
   match:
     url: http://localhost:4450/admin/identities/<.*>
     methods:
       - GET
       - DELETE
+      - PUT
   authenticators:
     - handler: anonymous
     - handler: noop

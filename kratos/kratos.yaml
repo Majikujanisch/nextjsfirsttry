@@ -7,8 +7,26 @@ serve:
     base_url: http://127.0.0.1:4433/
     cors:
       enabled: true
+      allowed_origins:
+        - http://localhost:3000/
+        - http://localhost:3001/
+      allowed_methods:
+        - POST
+        - GET
+        - PUT
+        - PATCH
+        - DELETE
+      allowed_headers:
+        - Authorization
+        - Cookie
+        - Content-Type
+      exposed_headers:
+        - Content-Type
+        - Set-Cookie
+
   admin:
     base_url: http://127.0.0.1:4434/
+      
     
 
 selfservice:
@@ -75,11 +93,10 @@ hashers:
     cost: 8
 
 identity:
-  default_schema_id: default
+  default_schema_id: Benutzer
   schemas:
     - id: Benutzer
-      url: https://jolly-williams-wvwhe1vn9o.projects.oryapis.com/schemas/NDA5ODhlYTkxZTZhZjY2NmQzNmUzMTFlYmI4YmMxOGY2NDFlZjg2NjlmZmRiOGU1YzRiMjQ2ODJlNjQyNTg5YjFiNDFiMTU2NTRhYTVmMTk3NTg1NzBhZTJhODcyOWZhODVlOThmNGY2YWI0MmE4ZWRhMDg4NDI0Yzk2YWRjY2Q
-
+      url: base64://ewogICIkaWQiOiAiQmVudXR6ZXIiLAogICJ0aXRsZSI6ICJQZXJzb24iLAogICJ0eXBlIjogIm9iamVjdCIsCiAgInByb3BlcnRpZXMiOiB7CiAgICAidHJhaXRzIjogewogICAgICAidHlwZSI6ICJvYmplY3QiLAogICAgICAicHJvcGVydGllcyI6IHsKICAgICAgICAiVXNlciI6IHsKICAgICAgICAgICJ0eXBlIjogInN0cmluZyIsCiAgICAgICAgICAidGl0bGUiOiAiQy1Db2RlIiwKICAgICAgICAgICJvcnkuc2gva3JhdG9zIjogewogICAgICAgICAgICAiY3JlZGVudGlhbHMiOiB7CiAgICAgICAgICAgICAgInBhc3N3b3JkIjogewogICAgICAgICAgICAgICAgImlkZW50aWZpZXIiOiB0cnVlCiAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAid2ViYXV0aG4iOiB7CiAgICAgICAgICAgICAgICAiaWRlbnRpZmllciI6IHRydWUKICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICJ0b3RwIjogewogICAgICAgICAgICAgICAgImFjY291bnRfbmFtZSI6IHRydWUKICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgIH0sCiAgICAgICAgICAibWF4TGVuZ3RoIjogMzIwCiAgICAgICAgfQogICAgICB9LAogICAgICAicmVxdWlyZWQiOiBbCiAgICAgICAgIlVzZXIiCiAgICAgIF0sCiAgICAgICJhZGRpdGlvbmFsUHJvcGVydGllcyI6IGZhbHNlCiAgICB9LAogICAgIm1ldGFkYXRhX3B1YmxpYyI6IHsKICAgICAgInR5cGUiOiAib2JqZWN0IiwKICAgICAgInByb3BlcnRpZXMiOiB7CiAgICAgICAgIklzQWRtaW4iOiB7CiAgICAgICAgICAidHlwZSI6ICJib29sZWFuIiwKICAgICAgICAgICJkZWZhdWx0IjogZmFsc2UKICAgICAgICB9CiAgICAgIH0KICAgIH0KICB9Cn0=
 courier:
   smtp:
     connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true

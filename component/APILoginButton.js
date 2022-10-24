@@ -7,32 +7,34 @@ import oath from "@ory/oathkeeper-client"
 import { edgeConfig } from "@ory/integrations/next"
 const { publicRuntimeConfig } = getConfig();
 import layout from "../styles/APIButton.module.css"
-function APILoginButton({apilink, typeofReq, text}){
+function APILoginButton({apilink, typeofReq, text, req = null, id = null}){
    const bearer = "ory_pat_AzRrrvr93n07gTwFDDbNs9biAnrW3JYz"   //Environmental variabels!! TODO
+   const ory = new V0alpha2Api(new Configuration(edgeConfig))
 
     const callAPILoginPin = async () => {
         const res = "";
         const data = "leer";
+        let requestOptions = {}
         switch(typeofReq){
             
             case "GET":
-                const requestOptionsGet = {
+                 requestOptions = {
                     method: 'GET',
                     headers: BearerHeader(bearer)
                 };
                 try{
-                    res = await fetch(apilink, requestOptionsGet);
+                    res = await fetch(apilink, requestOptions);
                     data = await res.json()
                     console.log("Worked")
                     console.log(data);
                 } catch (err){
                     console.log(err);
                     console.log("API ERR GET")
-                    console.log(requestOptionsGet)
+                    console.log(requestOptions)
                 }
                 break;
             case "DEL":
-                const requestOptions = {
+                 requestOptions = {
                     method: 'DELETE',
                     headers: BearerHeader(bearer)
                 };
@@ -47,6 +49,20 @@ function APILoginButton({apilink, typeofReq, text}){
                     console.log(err);
                     console.log("API ERR DEL")
                     console.log({apilink})
+
+                }break;
+            case "PUT":
+                requestOptions = {
+                    method: "PUT",
+                    headers: BearerHeader(bearer),
+                    body: {req}
+                }
+                try{
+                    let result = ory.AdminUpdateIdentity(id, kratosAdminUpdateIdentityBody);
+                    console.log(result);
+                    
+                } catch (err){
+                    console.log("Exception when calling V0alpha2Api.AdminUpdateIdentity: " + err)
 
                 }
             break;

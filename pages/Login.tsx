@@ -104,7 +104,7 @@ import {
     return (
       <>
         <Head>
-          <title>Sign in - Ory NextJS Integration Example</title>
+          <title>Sign in...Login</title>
           <meta name="description" content="NextJS + React + Vercel + Ory" />
         </Head>
         <MarginCard>
