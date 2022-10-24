@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This Project got created with the intention of controlling a IOBroker instance for work.
